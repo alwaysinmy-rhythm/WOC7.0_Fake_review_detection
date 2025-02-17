@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/style.css">
+
+    <link rel="icon" type="image/png" href="../static/logo.svg">
+
+    <title>Truemark</title>
+</head>
+
+
+<header class="header-outer">        
+    <div class="header-logo">
+        <img src="../static/logo.png" />
+    </div>
+</header>
+<body>
+    <div class = "centered" , id="loader">
+        <div class = "blob-1"></div>
+        <div class = "blob-2"></div>
+
+    </div>
+    <form class="input" id="reviewForm">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <textarea id="input-text" name="user_input"></textarea>
+        <button type="submit">Detect</button>
+        <div id="response" style="width: 80%;" ></div>
+    </form>
+
+    <div class="aboutUs glass" id="aboutUsid">
+        <div class="aboutBlock">
+            <h2>WHAT is TrueMark?</h2>
+            <p>
+                This website is designed to classify online reviews into two categories: human-written and computer-generated. 
+                With the rise of AI-generated reviews, it has become increasingly difficult to distinguish between genuine user feedback 
+                and artificially created content. Our system utilizes advanced Natural Language Processing (NLP) techniques to analyze 
+                the text and determine its authenticity. 
+            </p>
+            <p>
+                To use our platform, simply paste the product link into the provided input field. Our model will fetch and process the reviews, 
+                then display a categorized list. Reviews marked in <span style="color: green; font-weight: bold;">green</span> are identified as 
+                human-written, while those in <span style="color: red; font-weight: bold;">red</span> are flagged as AI-generated. 
+                This tool helps users make informed purchasing decisions by ensuring they rely on genuine feedback rather than automated reviews.
+            </p>
+        </div>
+        <hr class="solid" style="border: 2px solid rgba(25, 22, 22, 0.385); width: 100%; border-radius: 5px;">
+            
+        <div class="aboutBlock">
+            <h2>What are Our Aims?</h2>
+            <p>
+                Our long-term goal is to refine our classification accuracy further using deep learning and more sophisticated machine learning techniques. 
+                We plan to incorporate transformer-based models like BERT and GPT-based classifiers to enhance our detection capabilities.
+            </p>
+            <p>
+                Additionally, we aim to expand our reach beyond the current platform by integrating this solution with other leading e-commerce websites, 
+                such as Flipkart, Myntra, and more. By making our model adaptable and scalable, we hope to provide a universal solution for detecting 
+                fake reviews across multiple online shopping platforms.
+            </p>
+        </div>
+
+    </div>
+        
+        
+        
+    </div>
+    <footer class="footer"> 
+        Copyright © 2025 | All Rights Reserved | Ensures only genuine reviews are marked.
+        <br>
+        Developed by <a href="linkedin.com/in/rhythm-panchal/" style="color: white; text-decoration: none;">@Rhythm Panchal</a>
+    </footer>
+</body>
+
+<script>
+    function displayError(e){
+        
+        console.log(e)
+        const div = document.getElementById("response");
+        document.getElementById("loader").style.display = "none"
+        div.innerHTML = "Internal Server Error! Please try after sometime."
+        div.style.fontSize = "32px";
+        div.style.font = "900";
+        div.style.color = "white";
+        div.style.marginTop = "15px";
+        
+
+        // div.classList.add("glass");
+
+    }
+    function displayReviews(reviews ) {
+        const container = document.getElementById("response");
+        document.getElementById("loader").style.display = "none"
+
+        reviews.forEach(rev => {
+            const div = document.createElement("div");
+            div.classList.add("review");
+            div.textContent = rev.review;
+            if( rev.pred == 'OR') div.style.backgroundColor = "#32CD32"
+            if( rev.pred == 'CG') div.style.backgroundColor = "#CC0000"
+            
+            container.appendChild(div);
+            
+        });
+    }
+
+    document.getElementById("reviewForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form from navigating to /submit
+        let userInput = document.getElementById("input-text").value;
+        document.getElementById("aboutUsid").style.display = "none"
+        document.getElementById("loader").style.display = "inline"
+        document.getElementById("reviewForm").style.opacity = 0.8;
+        document.getElementById("response").innerHTML= ""
+        
+            
+        fetch("/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_input: userInput })
+        })
+        .then(res => res = res.json() )  // Parse response as JSON
+        .then(
+            res => {
+                if(res.length == 0 ){
+                    const div = document.getElementById("response");
+                    document.getElementById("loader").style.display = "none"
+                    div.innerHTML = "Unable to fetch reviews, please enter valid amazon.com link."
+                    div.style.fontSize = "32px";
+                    div.style.font = "900";
+                    div.style.color = "white";
+                    div.style.marginTop = "15px";
+                }
+            console.log(res.result);  // Debugging
+            displayReviews(res.result)
+        })
+        .catch(error => displayError(error));
+    });
+</script>
+</html>

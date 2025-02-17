@@ -1,0 +1,210 @@
+*{
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* background: #94d4ef; */
+    /* background: linear-gradient(to right top, #00308F, #6cdbeb); */
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(64,8,43,1) 67%);
+    overflow-x: hidden;
+    min-height: 100vh;
+    max-height: auto;
+    /* margin-top: 5%; */
+
+}
+
+.input {
+    margin-top : 10%; 
+    height: auto;
+    width: auto;
+    /* overflow: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Arial, Helvetica, sans-serif;
+    z-index: 3;
+}
+.glass {
+    background: white;
+    min-height: auto;
+    width: 60%;
+
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    display: flex;
+}
+
+.circle1 {
+    top: -50%;
+    right: -20%;
+    height: 40rem;
+    width: 40rem;
+    background: white;
+    background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.6),rgba(255, 255, 255, 0.2));
+    position: absolute;
+    border-radius: 50px;
+}
+.circle2 {
+
+    bottom: -25%;
+    left:-20%;
+    height: 40rem;
+    width: 40rem;
+    background: white;
+    background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.4),rgba(255, 255, 255, 0.1));
+    position: absolute;
+    border-radius: 50px;
+}
+
+#input-text {
+    height: 190px;
+    width: 490px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #c3e2f0;
+    resize: both;
+    overflow: auto;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 10px;
+}
+button {
+    height: 35px;
+    width: 150px;
+    margin-top: 10px;
+    background-color: #44032c;
+    border: 1px solid white;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #c63e85;
+}
+
+#response{
+    font-family:Arial, Helvetica, sans-serif;
+    font: 900;
+    /* font-size: 8px; */
+    margin: 5px;
+    /* background-color: bisque; */
+}
+
+.review{
+    font-size: 16px;
+    background-color: #c3e2f0;
+    margin : 7.5px; 
+    padding : 7.5px ; 
+    border : 2px solid black ;
+    border-radius: 5px;
+}
+
+.centered{
+    display: none;
+    width:400px;
+    height:400px;
+    position:absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+/* 	background:#000; */
+    filter: blur(1px) contrast(20);
+}
+
+.aboutUs{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 150px;
+    border-radius: 15px;
+    padding: 20px;
+}
+.aboutBlock{
+    font-size: 18px;
+    color: black;
+}
+.blob-1,.blob-2{
+    width:70px;
+    height:70px;
+    position:absolute;
+	background:#fff;
+    border-radius:50%;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+}
+.blob-1{
+    left:20%;
+    animation:osc-l 2.5s ease infinite;
+    background:#32CD32;
+}
+.blob-2{
+    left:80%;
+    animation:osc-r 2.5s ease infinite;
+    background:#CC0000;
+}
+@keyframes osc-l{
+    0%{left:20%;}
+    50%{left:50%;}
+    100%{left:20%;}
+}
+@keyframes osc-r{
+    0%{left:80%;}
+    50%{left:50%;}
+    100%{left:80%;}
+}
+
+@media (max-width: 500px) {
+    #input-text {
+        height: 100px;
+        width: 300px;
+        font-size: 14px;
+    }
+}
+
+
+
+/* Sticky header */
+.header-outer{
+	/* display: "block"; */
+	width: 100%;
+	position: absolute;
+	margin: 0 ;
+	z-index: -1;
+}
+/* Styling of other elements */
+.header-logo img {
+	margin-top: 0px;
+	margin-left: 10px;
+	height: 200px;
+}
+
+
+.footer {
+	position: relative;
+	margin : 10px;
+	/* margin-top: 25px; */
+
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	/* height: 25px; */
+	color: white;
+	text-align: center;
+  } 
