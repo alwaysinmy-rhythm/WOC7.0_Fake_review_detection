@@ -16,12 +16,11 @@
         <img src="../static/logo.png" />
     </div>
 </header>
+<div class = "centered" , id="loader">
+    <div class = "blob-1"></div>
+    <div class = "blob-2"></div>
+</div>
 <body>
-    <div class = "centered" , id="loader">
-        <div class = "blob-1"></div>
-        <div class = "blob-2"></div>
-
-    </div>
     <form class="input" id="reviewForm">
         <div class="circle1"></div>
         <div class="circle2"></div>
@@ -66,12 +65,12 @@
         
         
     </div>
-    <footer class="footer"> 
-        Copyright © 2025 | All Rights Reserved | Ensures only genuine reviews are marked.
-        <br>
-        Developed by <a href="linkedin.com/in/rhythm-panchal/" style="color: white; text-decoration: none;">@Rhythm Panchal</a>
-    </footer>
 </body>
+<footer class="footer"> 
+    Copyright © 2025 | All Rights Reserved | Ensures only genuine reviews are marked.
+    <br>
+    Developed by <a href="linkedin.com/in/rhythm-panchal/" style="color: white; text-decoration: none;">@Rhythm Panchal</a>
+</footer>
 
 <script>
     function displayError(e){
@@ -92,7 +91,6 @@
     function displayReviews(reviews ) {
         const container = document.getElementById("response");
         document.getElementById("loader").style.display = "none"
-
         reviews.forEach(rev => {
             const div = document.createElement("div");
             div.classList.add("review");

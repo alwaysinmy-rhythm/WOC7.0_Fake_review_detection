@@ -108,7 +108,7 @@ def getAmazonReviews(product_review_url) :
                 translate_links = driver.find_elements(By.XPATH, "//a[@data-hook='cr-translate-these-reviews-link']")
                 if translate_links:
                     translate_links[0].click()
-                    time.sleep(5)
+                    time.sleep(2)
             except Exception:
                 pass  # Ignore if no translation link is found
 
@@ -127,7 +127,7 @@ def getAmazonReviews(product_review_url) :
                     break
                 else:
                     next_button.click()
-                    time.sleep(random.uniform(2, 4))  # Wait for the next page to load
+                    time.sleep(2)  # Wait for the next page to load
             except TimeoutException:
                 print("Next button not found. Ending scraping process.")
                 break
