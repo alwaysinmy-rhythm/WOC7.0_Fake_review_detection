@@ -2,6 +2,7 @@ from flask import Flask, render_template, request ,jsonify
 
 import pickle
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
