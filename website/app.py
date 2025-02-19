@@ -2,8 +2,9 @@ from flask import Flask, render_template, request ,jsonify
 
 import pickle
 import nltk
-nltk.download('stopwords')
-from nltk.corpus import stopwords
+# nltk.download('stopwords')
+
+# from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 
@@ -18,7 +19,8 @@ exclude = string.punctuation
 def remove_punc(text):
   return text.translate(str.maketrans('', '' , exclude))
 
-stop_words = set(stopwords.words('english'))
+# stop_words = set(stopwords.words('english'))
+stop_words = {'he', 'all', 'them', 'had', 'during', 'through', 'will', 'more', 'under', "that'll", 'on', 'they', "should've", 'himself', "couldn't", 'be', 'his', 'other', 'herself', 'your', 'then', 'too', 'out', 'have', 'doesn', 'has', 'to', 'wasn', 'each', 'him', "you'd", 'this', "wasn't", 'with', 'our', 'whom', 'yourselves', 'theirs', 'wouldn', 'the', 'only', 'than', 'into', "isn't", "hadn't", 'an', 'such', "haven't", 'isn', 'hasn', 'no', 'where', 'who', 'why', 'few', "shan't", 'weren', "doesn't", 'here', "mustn't", "she's", 'myself', 'but', 'my', 'or', 'don', 'ours', 'own', 'll', 'a', 'ma', 'those', 'before', 'most', 'very', "weren't", 'do', "mightn't", 'being', 'she', 'did', 'between', "won't", 'does', 'd', 'aren', 'yours', 'hadn', 'below', 'as', 'until', 'we', 'am', 'should', 'both', 'at', 'having', 'that', 'were', "shouldn't", 'further', 'shouldn', 'for', 'again', 'couldn', "you're", 're', 'didn', 'while', 'ourselves', 'doing', 'ain', 'me', 's', 'been', 'when', 'any', 'nor', 'shan', 'so', 'once', 'are', 't', 'won', 'not', 'mustn', "it's", 'if', 'is', "don't", 'haven', 'now', 've', "wouldn't", "you've", 'yourself', "you'll", 'their', 'her', 'there', 'was', 'mightn', 'itself', 'against', 'i', 'm', 'you', 'it', 'o', 'can', 'down', 'needn', "needn't", 'just', 'same', 'its', 'from', "aren't", 'by', 'how', 'hers', 'up', "didn't", 'of', 'which', 'in', 'themselves', 'over', 'above', 'what', 'y', 'these', 'because', 'and', 'after', 'some', 'off', "hasn't", 'about'}
 def remove_stopwords(text):
     # Replace stopwords with an empty string but preserve spaces
     return " ".join([word if word not in stop_words else '' for word in text.split()])
